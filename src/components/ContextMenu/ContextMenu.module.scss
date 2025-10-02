@@ -1,0 +1,85 @@
+.menu {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  border-radius: 8px;
+  border: 1px solid var(--grey-500);
+  overflow: hidden;
+  box-shadow: 0 1px 16px 0 rgba(0, 0, 0, 0.08);
+
+  .menuOption {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: unset;
+    background-color: transparent;
+    width: 100%;
+    user-select: none;
+    cursor: pointer;
+
+    gap: 10px;
+    padding-left: 16px;
+    font: var(--font-text-14);
+    height: 40px;
+    color: var(--grey-900);
+    position: relative;
+    border-bottom: 1px solid var(--grey-400);
+
+    &.isLast {
+      border-bottom: unset !important;
+    }
+
+    svg {
+      fill: var(--grey-500);
+    }
+
+    &:hover {
+      background: var(--primary-light);
+      color: var(--primary-main);
+    }
+
+    &:active {
+      background: var(--primary-main);
+      color: var(--primary-inverse);
+
+      svg {
+        color: var(--white) !important;
+      }
+    }
+
+    .floatRight {
+      svg {
+        float: right;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .seperator {
+    height: 26px;
+    background: var(--grey-400);
+    color: var(--grey-600);
+
+    font: var(--font-header-12);
+    border: none;
+    padding-left: 15px;
+    pointer-events: none;
+  }
+
+  .seperatorNoLabel {
+    height: 8px;
+  }
+}
+
+.triggerWrapper {
+  display: flex;
+  flex-direction: row;
+  // max-width: fit-content;
+}
+
+.labelWrapper {
+  overflow: hidden;
+  flex: 1;
+  cursor: pointer;
+}

@@ -1,0 +1,7 @@
+.swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+
+.swiper-button-disabled svg {
+  color: var(--grey-600);
+}

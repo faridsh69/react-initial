@@ -1,0 +1,279 @@
+@use 'sass:math';
+@use 'sass:map';
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1280px,
+  xxl: 1536px,
+);
+
+$fonts: (
+  400: (
+    12: 15px,
+    14: 18px,
+    16: 21px,
+    18: 24px,
+  ),
+  500: (
+    14: 21px,
+    16: 24px,
+    18: 27px,
+    20: 30px,
+    30: 45px,
+    40: 60px,
+    50: 75px,
+  ),
+  700: (
+    14: 21px,
+    16: 24px,
+    18: 27px,
+    20: 30px,
+    30: 45px,
+    40: 60px,
+    50: 75px,
+  ),
+);
+
+@each $weight, $sizes in $fonts {
+  @each $size, $lineHeight in $sizes {
+    .font-#{$weight}-#{$size} {
+      font: var(--font-#{$weight}-#{$size}) !important;
+    }
+  }
+}
+
+:root {
+  @each $weight, $sizes in $fonts {
+    @each $size, $lineHeight in $sizes {
+      --font-#{$weight}-#{$size}: normal #{$weight} #{$size}px/#{$lineHeight} 'DM Sans', sans-serif;
+    }
+  }
+
+  // Colors
+  --white: #ffffff;
+  --black: #000000;
+
+  // Grey
+  --grey-100: #f2f2f2;
+  --grey-200: #e2ecef;
+  --grey-300: #e6e6e6;
+  --grey-400: #d9d9d9;
+  --grey-500: #cccccc;
+  --grey-600: #999999;
+  --grey-700: #666666;
+  --grey-800: #333333;
+  --grey-900: #151515;
+
+  --primary-main: #3b82f6;
+  --primary-inverse: #ffffff;
+  --primary-dark: #1e40af;
+  --primary-light: #dbeafe;
+
+  --secondary-main: #8b5cf6;
+  --secondary-inverse: #ffffff;
+  --secondary-dark: #5b21b6;
+  --secondary-light: #ede9fe;
+
+  --error-light: #fecaca;
+  --error: #dc2626;
+  --error-dark: #991b1b;
+
+  --success-light: #bbf7d0;
+  --success: #16a34a;
+  --success-dark: #166534;
+
+  --warning-light: #fde68a;
+  --warning: #f59e0b;
+  --warning-dark: #92400e;
+
+  --info-light: #bfdbfe;
+  --info: #2563eb;
+  --info-dark: #1e3a8a;
+
+  --disabled-main: var(--grey-400);
+  --disabled-inverse: var(--grey-700);
+
+  // Spacings
+  --general-outline-width: 1px;
+  --general-outline-style: solid;
+
+  // Sizes
+  --size-s-font: var(--font-500-14);
+  --size-s-size: 30px;
+  --size-s-space: 8px;
+  --size-s-borderradius: 4px;
+
+  --size-m-font: var(--font-500-16);
+  --size-m-size: 40px;
+  --size-m-space: 16px;
+  --size-m-borderradius: 6px;
+
+  --size-l-font: var(--font-500-18);
+  --size-l-size: 48px;
+  --size-l-space: 20px;
+  --size-l-borderradius: 8px;
+
+  --navbar-overlay-z-index: 98;
+  --navbar-z-index: 99;
+  --modal-overlay-z-index: 100;
+  --modal-z-index: 101;
+  --popover-z-index: 102;
+  --context-menu-z-index: 103;
+  --select-z-index: 104;
+  --toast-z-index: 105;
+  --toastify-z-index: 105;
+  --tooltip-z-index: 106;
+}
+
+html {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+@mixin scroll {
+  scrollbar-color: var(--grey-200-grad) transparent;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--grey-200-grad);
+  }
+}
+
+@mixin scrollHide {
+  scrollbar-color: var(--white) transparent;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--grey-200-grad);
+  }
+}
+
+$alignments: left, right, center;
+
+@each $alignment in $alignments {
+  .text-align-#{$alignment} {
+    text-align: $alignment;
+  }
+}
+
+$grid-columns: 12;
+$gutter: 20px;
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -(math.div($gutter, 2));
+  margin-right: -(math.div($gutter, 2));
+}
+
+.row > [class*='col'] {
+  box-sizing: border-box;
+  padding-left: math.div($gutter, 2);
+  padding-right: math.div($gutter, 2);
+}
+
+@mixin make-col($i) {
+  @if $i == 0 {
+    display: none;
+    flex: 0 0 auto;
+    max-width: none;
+  } @else {
+    display: block;
+    $pct: math.percentage(math.div($i, $grid-columns));
+    flex: 0 0 $pct;
+    max-width: $pct;
+  }
+}
+
+@mixin _generate-col-set($prefix: null) {
+  .col#{if($prefix, '-#{$prefix}', '')} {
+    flex: 1 0 0;
+    max-width: 100%;
+  }
+
+  .col#{if($prefix, '-#{$prefix}', '')}-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+  }
+
+  @for $i from 0 through $grid-columns {
+    .col#{if($prefix, '-#{$prefix}', '')}-#{$i} {
+      @include make-col($i);
+    }
+  }
+}
+
+@include _generate-col-set();
+
+@each $name, $min in $breakpoints {
+  @media (min-width: $min) {
+    @include _generate-col-set($name);
+  }
+}
+
+@mixin respond-to($point, $type: max) {
+  $value: map.get($breakpoints, $point);
+  @if $value == null {
+    @error "Unknown breakpoint `#{$point}`. Valid keys: #{map.keys($breakpoints)}";
+  }
+
+  @if $type == max {
+    @media screen and (max-width: $value) {
+      @content;
+    }
+  } @else if $type == min {
+    @media screen and (min-width: $value) {
+      @content;
+    }
+  } @else {
+    @error "Second arg must be 'min' or 'max'.";
+  }
+}
+
+.container {
+  max-width: map.get($breakpoints, 'xl');
+  width: 100%;
+  padding: 0px var(--size-l-space);
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-l-space);
+}
+
+.fluidContainer {
+  max-width: 100%;
+}

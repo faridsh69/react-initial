@@ -1,0 +1,45 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.switch {
+  width: 36px;
+  height: 20px;
+  background-color: var(--grey-400);
+  border-radius: 999px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  .knob {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--primary-inverse);
+    border: 1px solid var(--primary-main);
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .dot {
+      width: 5px;
+      height: 5px;
+      background: var(--primary-inverse);
+      border-radius: 50%;
+    }
+  }
+}
+
+.on {
+  .knob {
+    left: 16px;
+    background: black;
+    border: none;
+  }
+}

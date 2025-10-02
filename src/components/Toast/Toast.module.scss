@@ -1,0 +1,30 @@
+.toast {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 4px;
+  width: 100%;
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+
+    .check {
+      width: 20px;
+      height: 20px;
+      border-radius: 100px;
+    }
+
+    .title {
+      flex: 1;
+    }
+
+    .close {
+      cursor: pointer;
+    }
+  }
+}

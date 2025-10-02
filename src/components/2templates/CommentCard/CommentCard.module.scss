@@ -1,0 +1,19 @@
+.comment {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-left: 1px solid var(--grey-300);
+    padding-left: 24px;
+
+    .actions {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+    }
+  }
+}

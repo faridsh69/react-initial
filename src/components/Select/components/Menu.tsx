@@ -1,0 +1,124 @@
+import { ChangeEvent, UIEvent, useCallback, useEffect, useMemo, useState } from 'react'
+import { clsx } from 'clsx'
+import { DataNotFound } from 'components/DataNotFound/DataNotFound'
+import { Skelet } from 'components/Skelet/Skelet'
+import { SkeletVariants } from 'components/Skelet/Skelet.enums'
+import { TextInput } from 'components/TextInput/TextInput'
+import { IconsEnum } from 'enums/enums'
+import { OptionValueType } from 'types/types'
+
+import { getDisplayedOptions, getFinalValue, getIsScrolledBottom } from '../Select.helpers'
+import { MenuProps, SelectDisplayedOption, SelectOption } from '../Select.types'
+import { MenuOptions } from './MenuOptions'
+import styles from '../Select.module.scss'
+
+export const Menu = (props: MenuProps) => {
+  const {
+    options,
+    groups,
+    multiple,
+    value,
+    onChange,
+    size,
+    isSearchable,
+    searchTerm,
+    onSearch,
+    setSearchTerm,
+    onScrollToBottom,
+    handleCloseMenu,
+    width,
+    height,
+    isLoading,
+  } = props
+
+  const [isOnlySelected, setIsOnlySelected] = useState(false)
+
+  const displayedOptions = useMemo(() => {
+    return getDisplayedOptions(options, searchTerm, value, groups, isOnlySelected)
+  }, [options, searchTerm, value, groups, isOnlySelected])
+
+  useEffect(() => {
+    if (isOnlySelected && !displayedOptions.length) {
+      setIsOnlySelected(false)
+    }
+  }, [displayedOptions, isOnlySelected])
+
+  const handleClickOption = useCallback(
+    (option: SelectDisplayedOption) => {
+      if (onChange && !option.disabled) {
+        const finalValue = getFinalValue(option, multiple, value)
+        onChange(finalValue as SelectOption[] & OptionValueType)
+      }
+
+      if (!multiple) {
+        handleCloseMenu()
+      }
+    },
+    [multiple, value, onChange, handleCloseMenu],
+  )
+
+  const handleChangeSearch = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      setSearchTerm(e.target.value)
+      onSearch?.(e)
+    },
+    [onSearch, setSearchTerm],
+  )
+
+  const handleScrollMenu = useCallback(
+    (e: UIEvent<HTMLDivElement>) => {
+      if (isOnlySelected || isLoading || !onScrollToBottom) return
+
+      if (getIsScrolledBottom(e)) {
+        onScrollToBottom()
+      }
+    },
+    [isOnlySelected, onScrollToBottom, isLoading],
+  )
+
+  const [showSearch, setDelayShowSearch] = useState(false)
+  useEffect(() => {
+    setTimeout(() => {
+      setDelayShowSearch(true)
+    }, 10)
+  }, [])
+
+  return (
+    <>
+      <div
+        className={clsx(styles.menu, styles[`size-${size}`], isSearchable && styles.isSearchable)}
+        style={{ maxHeight: height, width }}
+      >
+        {isSearchable && showSearch && (
+          <TextInput
+            value={searchTerm}
+            onChange={handleChangeSearch}
+            size={size}
+            width={width}
+            placeholder={'Search'}
+            icon={IconsEnum.View}
+            autoFocus={true}
+            wrapperClassName={styles.search}
+          />
+        )}
+        {isLoading ? (
+          <div className={styles.isLoading}>
+            <Skelet variant={SkeletVariants.TextList} />
+          </div>
+        ) : !displayedOptions.length ? (
+          <div className={styles.nothingFound}>
+            <DataNotFound />
+          </div>
+        ) : (
+          <MenuOptions
+            size={size}
+            multiple={multiple}
+            options={displayedOptions}
+            handleClickOption={handleClickOption}
+            handleScrollMenu={handleScrollMenu}
+          />
+        )}
+      </div>
+    </>
+  )
+}

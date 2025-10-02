@@ -1,0 +1,68 @@
+@use '../scss/theme';
+
+.story {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  @include theme.scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 30px 50px;
+
+  border-left: 1px solid var(--grey-100);
+
+  code {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.95rem; /* roughly 15–16px, adjust as needed */
+    font-weight: 500;
+    background-color: #f5f5f5; /* light gray bg for contrast */
+    color: #c7254e; /* subtle red for visibility */
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    line-height: 1.5;
+  }
+
+  @include theme.respond-to(xl, max) {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+.selects {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+  width: 90%;
+  padding: 30px;
+
+  .select {
+    width: 48%;
+    height: 100px;
+  }
+}
+
+.imageStory {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.iconsStory {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 30;
+  width: 150px;
+  justify-content: space-between;
+}
+
+.noWrapStory {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 40px;
+}

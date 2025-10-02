@@ -1,0 +1,20 @@
+.MainSliderSwipper {
+  width: 100%;
+}
+
+.swiperSlide {
+  width: 230px !important;
+
+  .slider {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    align-items: center;
+    width: 232px;
+    border-radius: 16px;
+    border: 1px solid var(--grey-400);
+    padding: 16px;
+    user-select: none;
+  }
+}

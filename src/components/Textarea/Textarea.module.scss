@@ -1,0 +1,79 @@
+.Textarea {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 100%;
+
+  .resizeNone {
+    .textarea {
+      border: 1px solid var(--grey-200);
+      resize: none;
+    }
+  }
+
+  .wrapper {
+    position: relative;
+    display: flex;
+    max-width: 100%;
+
+    .textarea {
+      outline: none;
+      border: 1px solid var(--grey-200);
+      width: 100%;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font: var(--font-400-16);
+
+      &:focus {
+        border-color: var(--primary-main) !important;
+      }
+    }
+
+    .counter {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      right: 5px;
+      bottom: 5px;
+      position: absolute;
+      border-radius: 4px;
+      font: var(--font-400-14);
+
+      .count {
+        color: var(--success-light);
+        margin-right: 3px;
+      }
+
+      .limit {
+        color: var(--grey-600);
+      }
+
+      .inValid {
+        color: var(--error);
+      }
+    }
+  }
+}
+
+@mixin size($size, $height) {
+  .textarea {
+    height: $height;
+  }
+}
+
+.size-s {
+  @include size(s, 100px);
+}
+.size-m {
+  @include size(m, 120px);
+}
+.size-l {
+  @include size(l, 140px);
+}
+
+.disabled {
+  .textarea {
+    color: var(--grey-500);
+  }
+}

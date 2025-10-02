@@ -1,0 +1,96 @@
+@use './../../scss/theme.scss';
+
+.overlay {
+  position: fixed;
+  z-index: var(--navbar-overlay-z-index);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.navbar {
+  z-index: var(--navbar-z-index);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  background-color: var(--secondary-main);
+  border-bottom: 1px solid var(--grey-200);
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding-right: 32px;
+  padding-left: 32px;
+  height: 54px;
+
+  .logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .options {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+
+    .option {
+    }
+  }
+
+  @include theme.respond-to(lg, max) {
+    .options {
+      display: none;
+    }
+  }
+
+  .rightBar {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+
+    @include theme.respond-to(sm, max) {
+      display: none;
+    }
+  }
+
+  .expanded {
+    z-index: var(--modal-overlay-z-index);
+    position: fixed;
+    top: 54px;
+    left: 0px;
+    width: 100vw;
+    background-color: var(--secondary-main);
+    border-bottom: 1px solid var(--grey-200);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    padding-left: 32px;
+    min-height: 354px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+
+    .categories {
+      display: flex;
+      flex-direction: row;
+
+      .category {
+        width: 300px;
+        .categoryLink {
+        }
+      }
+    }
+  }
+}

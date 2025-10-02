@@ -1,0 +1,16 @@
+export enum InputComponentsEnum {
+  Text = 'text',
+  Textarea = 'textarea',
+  RadioList = 'radiolist',
+  Checkbox = 'checkbox',
+  Checklist = 'checklist',
+  Date = 'date',
+  Select = 'select',
+  Toggle = 'toggle',
+  Rating = 'rating',
+  Uploader = 'uploader',
+  ToggleButton = 'toggleButton',
+  Chips = 'chips',
+  Group = 'group',
+  Custom = 'custom',
+}

@@ -1,0 +1,25 @@
+.CommentAction {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  .textarea {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: end;
+    position: relative;
+  }
+
+  .commentBtn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+}

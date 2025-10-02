@@ -1,0 +1,91 @@
+@use '../../scss/theme';
+
+.wrapper {
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  user-select: none;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--grey-300);
+  @include theme.scroll;
+
+  .tabItem {
+    background-color: transparent;
+    outline: unset;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: var(--size-m-space);
+    cursor: pointer;
+    gap: 10px;
+    border-bottom: 2px solid var(--white);
+    font: var(--font-header-12);
+    border-radius: 8px 8px 0px 0px;
+
+    .label {
+      font: var(--font-500-14);
+      min-width: 50px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &:hover {
+      background: var(--primary-light);
+    }
+
+    &:focus {
+      outline-width: var(--general-outline-width);
+      outline-style: var(--general-outline-style);
+      outline-color: var(--primary-blue-t20);
+    }
+
+    &:active {
+      color: var(--white);
+      background: var(--primary-main) !important;
+    }
+  }
+
+  .active {
+    color: var(--primary-main);
+    border-color: var(--primary-main);
+  }
+
+  .disabled {
+    pointer-events: none;
+    color: var(--grey-500);
+  }
+
+  .title {
+    width: 100%;
+    padding: 10px;
+    padding-left: 0px;
+    font: var(--font-header-22);
+  }
+
+  .badge {
+    border-radius: 10px;
+    width: 16px;
+    height: 16px;
+    background-color: var(--error-light);
+    color: var(--white);
+    font: var(--font-400-12);
+    text-align: center;
+    padding-top: 1px;
+  }
+}
+
+.vertical {
+  padding: 20px;
+  flex-direction: column;
+
+  button {
+    width: 100%;
+  }
+}
+
+.horizontal {
+  flex-direction: row;
+}

@@ -1,0 +1,28 @@
+.userInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 7px;
+
+  .body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .labels {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+
+    .username {
+      display: flex;
+      flex-direction: row;
+      gap: 5px;
+      align-items: center;
+      justify-items: center;
+    }
+  }
+}

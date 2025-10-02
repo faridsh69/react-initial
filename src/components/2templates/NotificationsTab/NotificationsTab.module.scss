@@ -1,0 +1,15 @@
+.notifications {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  // margin-top: 24px;
+
+  .notification {
+    border-radius: 16px;
+    border: 1px solid var(--grey-300);
+    padding: 24px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }
+}

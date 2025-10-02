@@ -1,0 +1,57 @@
+.wrapper {
+  position: relative;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  user-select: none;
+  cursor: pointer;
+
+  .stars {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: start;
+    gap: 0;
+
+    .star {
+      padding-left: 3px;
+
+      .fill {
+        fill: var(--primary-main) !important;
+
+        path {
+          stroke: var(--primary-main);
+        }
+      }
+
+      .disabledFill {
+        fill: var(--grey-600) !important;
+      }
+
+      .notFilled {
+        fill: none;
+      }
+    }
+  }
+
+  .star:hover,
+  .star:hover ~ .star {
+    svg {
+      path {
+        stroke: var(--primary-main);
+      }
+    }
+  }
+
+  .disabled {
+    position: absolute;
+    background-color: transparent;
+    top: 0px;
+    width: 260px;
+    height: 70px;
+  }
+}
+
+.noHover {
+  pointer-events: none;
+}

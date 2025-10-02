@@ -1,0 +1,218 @@
+.TextInput {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+
+  .wrapper {
+    position: relative;
+    display: flex;
+    width: 100%;
+    align-items: center;
+
+    .input {
+      width: 100%;
+      border: 1px solid var(--grey-200);
+      outline: none;
+      outline: unset;
+
+      &::placeholder {
+        color: var(--grey-500);
+      }
+
+      &:hover {
+        border-color: var(--primary-main) !important;
+      }
+    }
+
+    .icon {
+      position: absolute;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      svg {
+        color: var(--grey-500);
+      }
+    }
+
+    .avatar {
+      position: absolute;
+    }
+
+    .options {
+      padding-right: 10px;
+      padding-top: 5px;
+      height: 95%;
+      position: absolute;
+      right: 1px;
+      bottom: 1px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      color: var(--grey-500);
+
+      .handle {
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        // border-left: 1px solid var(--grey-200);
+        height: 100%;
+        width: 30px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .separator {
+        width: 1px;
+        height: 100%;
+        background-color: var(--grey-500);
+        height: calc(100% - 2px);
+      }
+    }
+  }
+
+  &:focus-within {
+    .label {
+      color: var(--primary-main);
+    }
+    .input {
+      border-color: var(--main-dark) !important;
+    }
+  }
+}
+
+.readOnly {
+  background-color: var(--grey-100-grad) !important;
+}
+
+.secondary {
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-radius: 0px !important;
+}
+
+.active {
+  .input {
+    border-color: var(--primary-main);
+  }
+}
+
+.showError {
+  .input {
+    border-color: var(--error) !important;
+  }
+}
+
+@mixin size($size) {
+  .input {
+    font: var(--font-400-16);
+    border-radius: var(--size-#{$size}-borderradius);
+    // padding: 0 var(--size-#{$size}-space);
+    padding: 0 12px;
+    height: var(--size-#{$size}-size);
+    min-height: var(--size-#{$size}-size);
+
+    &::placeholder {
+      font: var(--font-400-16);
+      // font: var(--size-#{$size}-font);
+    }
+  }
+
+  .icon {
+    padding: 0 var(--size-#{$size}-space);
+  }
+
+  .avatar {
+    padding: 0 var(--size-#{$size}-counter-spacing-v);
+  }
+
+  .unit {
+    margin-right: 1px;
+    font: var(--size-#{$size}-font);
+    // padding: 0 var(--size-#{$size}-space);
+    background-color: var(--white);
+  }
+
+  .paddingLeft {
+    padding-left: var(--size-#{$size}-size);
+  }
+
+  .singlePaddingRight {
+    padding-right: var(--size-#{$size}-size);
+  }
+
+  .doublePaddingRight {
+    padding-right: calc(1.5 * var(--size-#{$size}-size));
+  }
+
+  .moveLeft {
+    padding-right: var(--size-#{$size}-size);
+  }
+
+  .height100 {
+    height: 100%;
+    transform: scale(0.95);
+  }
+
+  .invisible {
+    -webkit-text-security: disc;
+  }
+}
+
+.size-s {
+  @include size(s);
+}
+
+.size-m {
+  @include size(m);
+}
+
+.size-l {
+  @include size(l);
+}
+
+.noBorderRadius-left {
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+
+.noBorderRadius-right {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
+.noBorderRadius-top {
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+}
+
+.noBorderRadius-bottom {
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
+.noBorderColors-left {
+  border-left-color: var(--grey-500) !important;
+}
+
+.noBorderColors-right {
+  border-right-color: var(--grey-500) !important;
+}
+
+.noBorderColors-top {
+  border-top-color: var(--grey-500) !important;
+}
+
+.noBorderColors-bottom {
+  border-bottom-color: var(--grey-500) !important;
+}
+
+.password {
+  -webkit-text-security: disc;
+}

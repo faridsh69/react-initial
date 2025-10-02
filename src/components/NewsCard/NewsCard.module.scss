@@ -1,0 +1,16 @@
+.newsCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  img {
+    border-radius: 16px;
+  }
+
+  .text {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+}

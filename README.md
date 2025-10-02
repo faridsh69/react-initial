@@ -1,21 +1,6 @@
-# UIKIT
+# React initial
 
-how to install
-npm i @drinkbetter-ai/utils@latest
-
-the way to use common css blocks
-@import '@drinkbetter-ai/utils/scss/common';
-
-The way to test package: inside cloned version run:
-1 npm run build;
-2 yalc publish --push
-
-then with yalc you will have something like @drinkbetter-ai/utils but only for your system,
-so for its usage: inside your app run:
-
-3 yalc link @drinkbetter-ai/utils
-
----
+Here is a good sample of best practice for implementing all components and other hacks in a react project
 
 ### components
 
